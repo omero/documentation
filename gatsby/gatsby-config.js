@@ -109,12 +109,20 @@ module.exports = {
             }
           },
           {
-            resolve: "gatsby-plugin-segment-js",
+            resolve: "gatsby-plugin-segment-analytics",
+            options: {
+              writeKey: process.env.SEGMENT_KEY,
+            },
+          },
+          {
+            resolve: `gatsby-plugin-segment-js`,
             options: {
               prodKey: process.env.SEGMENT_KEY,
               devKey: process.env.SEGMENT_KEY,
-              trackPage: true,
             },
+          },
+          {
+            resolve: "gatsby-plugin-analytics",
           },
           {
             resolve: "gatsby-remark-embed-video",

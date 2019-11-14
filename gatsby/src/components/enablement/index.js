@@ -1,20 +1,26 @@
 import React from "react"
-import './style.css';
+import './style.css'
 
 const Enablement = ({ title, link, campaign, children }) => {
-  _handleClick() {
-    window.analytics.track("Docs Enablement Clicked", {
-        campaign: {campaign},
+
+  function _handleClick(campaign) {
+    window.analytics.track('Docs Enablement Clicked', {
+      campaign: {campaign},
     });
-}
-  return (
-    <div className="enablement">
-      <h4 className="info">
-        <a href={link} class="external" onClick={this._handleClick}>{title}</a>
-      </h4>
-      {children}
-    </div>
-  )
-}
+  }
+  
+  
+    return (
+      <>
+      <div className="enablement">
+        <h4 className="info">
+          <a href={link} className="external"  onClick={_handleClick(campaign)}>{title}</a>
+        </h4>
+        {children}
+      </div>
+      </>
+    )
+ }
 
 export default Enablement
+  
