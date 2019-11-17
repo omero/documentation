@@ -13,6 +13,7 @@ jobs:
             - v1-npm-deps-{{ checksum "gatsby/package-lock.json" }}
             # Fallback cache to be used
             - v1-npm-deps-
+            - gatsby-cache-
       - run:
           name: Install Dependencies
           command: |
@@ -22,6 +23,10 @@ jobs:
           key: v1-npm-deps-{{ checksum "gatsby/package-lock.json" }}
           paths:
             - gatsby/node_modules
+      - save_cache:
+          key: gatsby-cache-{{ epoch }}
+          paths:
+            - gatsby/.cache
       - run:
           name: Gatsby Build
           command: |
