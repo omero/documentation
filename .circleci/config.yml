@@ -23,15 +23,15 @@ jobs:
           key: v1-npm-deps-{{ checksum "gatsby/package-lock.json" }}
           paths:
             - gatsby/node_modules
-      - save_cache:
-          key: gatsby-cache-{{ epoch }}
-          paths:
-            - gatsby/.cache
       - run:
           name: Gatsby Build
           command: |
             cd  ~/build/gatsby
             npm run build
+      - save_cache:
+          key: gatsby-cache-{{ epoch }}
+          paths:
+            - gatsby/.cache
       - run:
           name: Firebase Deploy
           command: ~/build/gatsby/node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
