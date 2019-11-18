@@ -31,7 +31,7 @@ jobs:
       - save_cache:
           key: gatsby-cache-{{ epoch }}
           paths:
-            - gatsby/.cache
+            - ~/build/gatsby/.cache
       - persist_to_workspace:
           root: .
           paths:
@@ -57,3 +57,5 @@ workflows:
           filters:
             branches:
               only: master
+          requires:
+            - build
